@@ -7,16 +7,21 @@ import {
   DetailPage,
   RegisterAndlogin,
 } from "../Pages/index";
+import { Navbar, Footer } from "../components/index";
 
 const MyRoutes = () => {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/" element={<FavoritePage />} />
-      <Route path="/" element={<DetailPage />} />
-      <Route path="/" element={<RegisterAndlogin />} />
-    </Routes>
+    <>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/" element={<FavoritePage />} />
+        <Route path="/" element={<DetailPage />} />
+        <Route path="/" element={<RegisterAndlogin />} />
+      </Routes>
+      <Footer />
+    </>
   );
 };
 
