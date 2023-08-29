@@ -1,9 +1,29 @@
-import React from 'react'
+import React, { useState } from "react";
+import { ContainerHome } from "./style";
+import { Sidebar, CardContext } from "../../components/index";
 
 const HomePage = () => {
+  const [show, setShow] = useState(false);
+  const handleShow = () => {
+    setShow(!show);
+  };
   return (
-    <div>HomePage</div>
-  )
-}
+    <ContainerHome show={show}>
+      <div className={`btn`}>
+        <button onClick={handleShow}>
+          <p>Filtros</p>
+        </button>
+      </div>
+      <div className="sidebar">
+      <Sidebar/>
+      </div>
+      <div className="content">
+       <CardContext/>
+      </div>
+     
+     
+    </ContainerHome>
+  );
+};
 
-export default HomePage
+export default HomePage;

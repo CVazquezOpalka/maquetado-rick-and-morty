@@ -1,11 +1,15 @@
-import React from 'react';
+import React from "react";
+import { styled } from "styled-components";
 
+export const CardContext = () => {
+  return (
+    <Container>
+     <div></div>
+    </Container>
+  );
+};
 
-export const CardContext = () =>{
-return (
-      <Container>
-          <h1>CoardContext</h1>
-      </Container>
-);
-}
-
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+`;
