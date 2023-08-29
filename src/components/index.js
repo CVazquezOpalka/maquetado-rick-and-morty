@@ -5,3 +5,4 @@ export * from './LoginForm/LoginForm';
 export * from './Navbar/Navbar';
 export * from './RegisterForm/RegisterForm';
 export * from './Searchbar/Searchbar';
+export * from './Sidebar/Sidebar'

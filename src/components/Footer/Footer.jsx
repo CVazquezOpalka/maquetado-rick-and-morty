@@ -1,11 +1,10 @@
-import React from 'react';
+import React from "react";
+import { FooterContainer } from "./style";
 
-
-export const Footer = () =>{
-return (
-      <Container>
-          <h1>CFooter</h1>
-      </Container>
-);
-}
-
+export const Footer = () => {
+  return (
+    <FooterContainer>
+      <h1>CFooasdasdter</h1>
+    </FooterContainer>
+  );
+};
