@@ -9,19 +9,20 @@ const HomePage = () => {
   };
   return (
     <ContainerHome show={show}>
-      <div className={`btn`}>
+      <div className="btn">
         <button onClick={handleShow}>
           <p>Filtros</p>
         </button>
       </div>
-      <div className="sidebar">
-      <Sidebar/>
-      </div>
       <div className="content">
-       <CardContext/>
+
+        <div className="sidebar">
+          <Sidebar />
+        </div>
+        <div className="content">
+          <CardContext />
+        </div>
       </div>
-     
-     
     </ContainerHome>
   );
 };

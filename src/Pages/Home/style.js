@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ContainerHome = styled.main`
   position: relative;
-  width:100%;
+  width: 100%;
   min-height: 100vh;
   height: auto;
   background: rgb(63, 94, 251);
@@ -11,13 +11,6 @@ export const ContainerHome = styled.main`
     rgba(63, 94, 251, 1) 0%,
     rgba(252, 70, 162, 1) 100%
   );
-  display: grid;
-  grid-template-columns: ${({show})=>show?"200px auto":"0 auto"};
-  gap:16px;
-  align-items: center;
-  justify-items: center;
-  transition: 0.5s ease-in-out;
-
   .btn {
     position: absolute;
     top: 15%;
@@ -42,19 +35,31 @@ export const ContainerHome = styled.main`
       }
     }
   }
-  
-  .sidebar {
-    width: ${({show})=> show?"200px":"0"};
-    height: 80%;
-    border-radius: 0 10px 10px 0;
-    overflow: hidden;
-    transition: 0.5s ease-in-out;
-    background-color: #111;
-  }
   .content {
-    width:${({show})=>show?"calc(100%-200px)":"100%"};
-    height: 80%;
-    width: 95%;
-    background-color: red;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: ${({ show }) => (show ? "200px auto" : "0 auto")};
+    align-items: center;
+    justify-items: center;
+    transition: 0.5s ease-in-out;
+    .sidebar {
+      width: ${({ show }) => (show ? "200px" : "0")};
+      height: 80%;
+      border-radius: 0 10px 10px 0;
+      overflow: hidden;
+      transition: 0.5s ease-in-out;
+      background-color: #111;
+    }
+    .content {
+      width: ${({ show }) => (show ? "calc(1300px - 200px)" : "1300px")};
+      height: auto;
+      margin-top: 100px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.5s ease-in-out;
+    }
   }
 `;

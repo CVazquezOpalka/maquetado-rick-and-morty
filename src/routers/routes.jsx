@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import {
   HomePage,
   LandingPage,
@@ -9,10 +9,17 @@ import {
 } from "../Pages/index";
 import { Navbar, Footer } from "../components/index";
 
+
 const MyRoutes = () => {
+  const location = useLocation();
+
+  const showNav = location.pathname === "/home" || location.pathname === "/";
+  const showFoot = location.pathname === "/home" || location.pathname === "/";
+ 
   return (
     <>
-      <Navbar />
+      {showNav && <Navbar />}
+      
       <Routes>
         <Route path="/home" element={<HomePage />} />
         <Route path="/" element={<LandingPage />} />
@@ -20,7 +27,7 @@ const MyRoutes = () => {
         <Route path="/character/:id" element={<DetailPage />} />
         <Route path="/auth" element={<RegisterAndlogin />} />
       </Routes>
-      <Footer />
+      {showFoot && <Footer />}
     </>
   );
 };
