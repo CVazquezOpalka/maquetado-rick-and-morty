@@ -35,7 +35,7 @@ export const CardContainer = styled.div`
     align-items: center;
     justify-content: center;
     gap: 10px;
-   
+
     button {
       padding: 5px 10px;
       margin-bottom: 5px;
@@ -45,8 +45,8 @@ export const CardContainer = styled.div`
       font-size: 20px;
       cursor: pointer;
       transition: 0.3s ease-in;
-      &:hover{
-        transform: scale(1.2)
+      &:hover {
+        transform: scale(1.2);
       }
     }
   }

@@ -2,6 +2,8 @@ import {
   GET_ALL_CHARACTERS,
   GET_CHARACTER,
   UPDATE_CHARACTER_DETAIL,
+  ADD_CHARACTER_TO_FAVORITE,
+  REMOVE_CHARACTER_TO_FAVORITE,
 } from "./type";
 
 export const getAllCharacters = () => async (dispatch) => {
@@ -34,4 +36,14 @@ export const getCharacter = (id) => async (dispatch) => {
 
 export const updateCharacterDetail = () => ({
   type: UPDATE_CHARACTER_DETAIL,
+});
+
+export const addCharacterToFavorite = (character) => ({
+  type: ADD_CHARACTER_TO_FAVORITE,
+  payload: character,
+});
+
+export const removeCharacterToFavorite = (id) => ({
+  type: REMOVE_CHARACTER_TO_FAVORITE,
+  payload: id,
 });

@@ -13,7 +13,7 @@ import { Navbar, Footer } from "../components/index";
 const MyRoutes = () => {
   const location = useLocation();
 
-  const showNav = location.pathname === "/home" || location.pathname === "/";
+  const showNav = location.pathname === "/home" || location.pathname === "/" || location.pathname === "/favorite";
   const showFoot = location.pathname === "/home" || location.pathname === "/";
  
   return (

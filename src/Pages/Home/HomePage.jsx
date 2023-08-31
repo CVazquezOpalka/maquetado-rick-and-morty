@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ContainerHome } from "./style";
-import { Sidebar, CardContext } from "../../components/index";
+import { Sidebar, CardContext, SearchBar, Pagination } from "../../components/index";
 
 const HomePage = () => {
   const [show, setShow] = useState(false);
@@ -9,6 +9,8 @@ const HomePage = () => {
   };
   return (
     <ContainerHome show={show}>
+      <SearchBar/>
+      <Pagination/>
       <div className="btn">
         <button onClick={handleShow}>
           <p>Filtros</p>
