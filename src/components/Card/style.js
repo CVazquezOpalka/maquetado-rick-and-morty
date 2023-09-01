@@ -2,12 +2,12 @@ import styled from "styled-components";
 
 export const CardContainer = styled.div`
   width: 210px;
-  height: 240px;
+  height: 340px;
   background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(2px);
   border-radius: 10px;
   display: grid;
-  grid-template-rows: 180px auto;
+  grid-template-rows: 200px 50px 50px 40px;
   grid-template-columns: 100%;
   place-items: center;
   transition: 0.5s ease-in-out;
@@ -27,6 +27,9 @@ export const CardContainer = styled.div`
     letter-spacing: 1px;
     font-size: 20px;
     font-weight: 500px;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
   }
   .btn-container {
     width: 100%;

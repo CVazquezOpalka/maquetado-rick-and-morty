@@ -11,6 +11,14 @@ export const ContainerHome = styled.main`
     rgba(63, 94, 251, 1) 0%,
     rgba(252, 70, 162, 1) 100%
   );
+  .search {
+
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 30px;
+  }
   .btn {
     position: absolute;
     top: 15%;
@@ -35,7 +43,7 @@ export const ContainerHome = styled.main`
       }
     }
   }
-  .content {
+  .contents {
     width: 100%;
     height: 100%;
     display: grid;
@@ -54,12 +62,15 @@ export const ContainerHome = styled.main`
     .content {
       width: ${({ show }) => (show ? "calc(1300px - 200px)" : "1300px")};
       height: auto;
-      margin-top: 100px;
-
       display: flex;
       align-items: center;
       justify-content: center;
       transition: 0.5s ease-in-out;
     }
+  }
+  .paginate {
+    width: 90%;
+    height: 70px;
+    margin: 0 auto;
   }
 `;

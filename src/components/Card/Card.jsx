@@ -25,6 +25,7 @@ export const Card = ({ character }) => {
           ? character.name.slice(0, 15)
           : character.name}
       </p>
+      <p>{character.location.name}</p>
       <div className="btn-container">
         <button onClick={handleFavorites}>{heart}</button>
         <button onClick={() => navigate(`/character/${character.id}`)}>

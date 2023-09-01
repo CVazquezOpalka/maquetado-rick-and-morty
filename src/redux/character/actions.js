@@ -6,8 +6,8 @@ import {
   REMOVE_CHARACTER_TO_FAVORITE,
 } from "./type";
 
-export const getAllCharacters = () => async (dispatch) => {
-  const URL = "https://rickandmortyapi.com/api/character";
+export const getAllCharacters = (URL) => async (dispatch) => {
+  
   try {
     const response = await fetch(URL);
     const data = await response.json();
