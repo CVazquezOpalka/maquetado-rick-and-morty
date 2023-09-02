@@ -12,8 +12,7 @@ export const ContainerHome = styled.main`
     rgba(252, 70, 162, 1) 100%
   );
   .search {
-
-    height: 100px;
+    height: 130px;
     display: flex;
     align-items: center;
     justify-content: center;

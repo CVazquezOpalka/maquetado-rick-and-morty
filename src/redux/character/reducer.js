@@ -4,6 +4,8 @@ import {
   UPDATE_CHARACTER_DETAIL,
   ADD_CHARACTER_TO_FAVORITE,
   REMOVE_CHARACTER_TO_FAVORITE,
+  SEARCH_CHARACTER,
+  UPDATE_SEARCH,
 } from "./type";
 
 const sesionStorage = localStorage.getItem("favorites");
@@ -11,6 +13,7 @@ const sesionStorage = localStorage.getItem("favorites");
 const initialState = {
   characters: [],
   characterDetail: {},
+  searchCharacters: "",
   favorites: sesionStorage ? JSON.parse(sesionStorage) : [],
   isLoading: true,
   loadingDetail: true,
@@ -61,6 +64,17 @@ export const characterReducer = (state = initialState, { type, payload }) => {
         ...state,
         favorites: updateFavorites,
       };
+    case SEARCH_CHARACTER:
+      return {
+        ...state,
+        searchCharacters: payload,
+      };
+    case UPDATE_SEARCH:
+      return {
+        ...state,
+        searchCharacters: "",
+      };
+
     default:
       return state;
   }
