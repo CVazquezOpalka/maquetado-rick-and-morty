@@ -20,6 +20,13 @@ export const Card = ({ character }) => {
   return (
     <CardContainer>
       <img src={character.image} alt={character.name} />
+      {character.status === "Alive" ? (
+        <span className="badge alive">{character.status}</span>
+      ) : character.status === "Dead" ? (
+        <span className="badge dead">{character.status}</span>
+      ) : (
+        <span className="badge unknow">{character.status}</span>
+      )}
       <p>
         {character.name.length > 15
           ? character.name.slice(0, 15)

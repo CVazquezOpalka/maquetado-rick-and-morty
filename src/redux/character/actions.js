@@ -4,10 +4,11 @@ import {
   UPDATE_CHARACTER_DETAIL,
   ADD_CHARACTER_TO_FAVORITE,
   REMOVE_CHARACTER_TO_FAVORITE,
+  SEARCH_CHARACTER,
+  UPDATE_SEARCH,
 } from "./type";
 
 export const getAllCharacters = (URL) => async (dispatch) => {
-  
   try {
     const response = await fetch(URL);
     const data = await response.json();
@@ -46,4 +47,13 @@ export const addCharacterToFavorite = (character) => ({
 export const removeCharacterToFavorite = (id) => ({
   type: REMOVE_CHARACTER_TO_FAVORITE,
   payload: id,
+});
+
+export const searchCharacter = (character) => ({
+  type: SEARCH_CHARACTER,
+  payload: character,
+});
+
+export const updateSearch = () => ({
+  type: UPDATE_SEARCH,
 });
