@@ -1,0 +1,4 @@
+export const GENDER_FILTER = "GENDER_FILTER";
+export const STATUS_FILTER = "STATUS_FILTER";
+export const SPECIES_FILTER = "SPECIES_FILTER";
+export const UPDATE_FILTER = "UPDATE_FILTER";

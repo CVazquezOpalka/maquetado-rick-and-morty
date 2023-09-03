@@ -9,12 +9,13 @@ const App = () => {
   const dispatch = useDispatch();
   const page = useSelector((state) => state.pagination.actualPage);
   const search = useSelector((state) => state.character.searchCharacters);
-  const URL = `https://rickandmortyapi.com/api/character/?page=${page}&name=${search}`;
+  const { status, gender, species } = useSelector((state) => state.filters);
+  const URL = `https://rickandmortyapi.com/api/character/?page=${page}&name=${search}&status=${status}&gender=${gender}&species=${species}`;
 
   useEffect(() => {
     dispatch(getAllCharacters(URL));
     dispatch(totalPages());
-  }, [dispatch, page,search]);
+  }, [dispatch, page, search, status, gender, species]);
   return (
     <>
       <MyRoutes />
