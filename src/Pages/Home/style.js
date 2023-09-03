@@ -52,11 +52,9 @@ export const ContainerHome = styled.main`
     transition: 0.5s ease-in-out;
     .sidebar {
       width: ${({ show }) => (show ? "200px" : "0")};
-      height: 80%;
-      border-radius: 0 10px 10px 0;
+      height: 95%;  
       overflow: hidden;
       transition: 0.5s ease-in-out;
-      background-color: #111;
     }
     .content {
       width: ${({ show }) => (show ? "calc(1300px - 200px)" : "1300px")};
