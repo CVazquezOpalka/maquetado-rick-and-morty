@@ -1,141 +1,129 @@
-import React from "react";
-/* import { Container } from "./style"; */
-import styled from "styled-components";
+import React, { useState } from "react";
+import {
+  ContainerSidebar,
+  FilterBar,
+  StatusContainer,
+  GenderContainer,
+  SpeciesContainer,
+} from "./style";
+
+import {
+  genderFilter,
+  statusFilter,
+  speciesFilter,
+  updateFilter,
+} from "../../redux/filters/actions";
+import { updatePagination } from "../../redux/page/action";
+import { useDispatch, useSelector } from "react-redux";
 
 export const Sidebar = () => {
+  const dispatch = useDispatch();
+  const { status, gender, species } = useSelector((state) => state.filters);
+
+  const statusArr = ["alive", "dead", "unknown"];
+  const genderArr = ["female", "male", "genderless", "unknown"];
+  let speciesArr = [
+    "Human",
+    "Alien",
+    "Humanoid",
+    "Poopybutthole",
+    "Mythological",
+    "Unknown",
+    "Animal",
+    "Disease",
+    "Robot",
+    "Cronenberg",
+    "Planet",
+  ];
+  const [filters, setFilters] = useState([]);
+  console.log(filters);
+  const handleRadioButtons = (e) => {
+    const { name } = e.target;
+
+    // Dependiendo del grupo de radio buttons, actualiza el estado correspondiente
+    if (statusArr.includes(name)) {
+      dispatch(statusFilter(name));
+      dispatch(updatePagination());
+      setFilters((prevFilters) => prevFilters.concat(name));
+    } else if (genderArr.includes(name)) {
+      dispatch(genderFilter(name));
+      dispatch(updatePagination());
+      setFilters((prevFilters) => prevFilters.concat(name));
+    } else if (speciesArr.includes(name)) {
+      dispatch(speciesFilter(name));
+      dispatch(updatePagination());
+      setFilters((prevFilters) => prevFilters.concat(name));
+    }
+  };
+
   return (
-    <ContainerSidebar>
-      <FilterBar>
+    <ContainerSidebar heigth={filters.length}>
+      <FilterBar show={filters.length}>
         <h3>Filtros Aplicados</h3>
-        <div className="filters"></div>
+        <div className="filters">
+          {filters.map((e, index) => (
+            <span key={index}>{e}</span>
+          ))}
+        </div>
+        <div className="btn-filters">
+          <button
+            onClick={() => {
+              dispatch(updateFilter());
+              setFilters([]);
+            }}
+          >
+            clear filter
+          </button>
+        </div>
       </FilterBar>
       <StatusContainer>
         <h3>Status</h3>
         <div className="status">
-          <div className="input-field">
-            <input type="radio" name="" id="" />
-            <label>Alive</label>
-          </div>
-          <div className="input-field">
-            <input type="radio" name="" id="" />
-            <label>Dead</label>
-          </div>
-          <div className="input-field">
-            <input type="radio" name="" id="" />
-            <label>Unknown</label>
-          </div>
+          {statusArr.map((e, index) => (
+            <div className="input-field" key={index}>
+              <input
+                type="radio"
+                name={e}
+                onChange={handleRadioButtons}
+                checked={e === status ? true : false}
+              />
+              <label htmlFor="status">{e}</label>
+            </div>
+          ))}
         </div>
       </StatusContainer>
       <GenderContainer>
         <h3>Gender</h3>
-        <div className="gender"></div>
+        <div className="gender">
+          {genderArr.map((e, index) => (
+            <div className="input-field" key={index}>
+              <input
+                type="radio"
+                name={e}
+                onChange={handleRadioButtons}
+                checked={e === gender ? true : false}
+              />
+              <label>{e}</label>
+            </div>
+          ))}
+        </div>
       </GenderContainer>
-      <SpeciesContainer></SpeciesContainer>
+      <SpeciesContainer>
+        <h3>Species</h3>
+        <div className="species">
+          {speciesArr.map((e, index) => (
+            <div className="input-field" key={index}>
+              <input
+                type="radio"
+                name={e}
+                onChange={handleRadioButtons}
+                checked={e === species ? true : false}
+              />
+              <label>{e}</label>
+            </div>
+          ))}
+        </div>
+      </SpeciesContainer>
     </ContainerSidebar>
   );
 };
-
-export const ContainerSidebar = styled.aside`
-  width: 100%;
-  height: 750px;
-  display: grid;
-  background-color: #111;
-  border-radius: 0 10px 10px 0;
-  grid-template-rows: 150px 200px 200px 200px;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-areas:
-    "a1 a1"
-    "a2 a2"
-    "a3 a3"
-    "a4 a4";
-  place-items: center;
-  overflow: hidden;
-`;
-export const FilterBar = styled.div`
-  grid-area: a1;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  h3 {
-    margin-top: 5px;
-    margin-bottom: 5px;
-    color: #fff;
-    text-decoration: underline;
-    width: 100%;
-    text-align: center;
-    overflow: hidden;
-  }
-  .filters {
-    width: 100%;
-    height: 100%;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    place-items: center;
-    span {
-      background-color: grey;
-      padding: 2px 4px;
-      border-radius: 5px;
-      color: #fff;
-    }
-  }
-`;
-export const StatusContainer = styled.div`
-  grid-area: a2;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  h3 {
-    margin: 5px 0;
-    width: 100%;
-    text-align: center;
-    color: #fff;
-    text-decoration: underline;
-  }
-  .status {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    .input-field {
-      width: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 5px;
-      label {
-        color: #fff;
-        font-weight: 600;
-      }
-    }
-  }
-`;
-export const GenderContainer = styled.div`
-  grid-area: a3;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  h3{
-    margin-top: 5px;
-    margin-bottom: 5px;
-    width: 100%;
-    text-align: center;
-    text-decoration: underline;
-    color: #fff;
-  }
-`;
-
-export const SpeciesContainer = styled.div`
-  grid-area: a4;
-
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-`;

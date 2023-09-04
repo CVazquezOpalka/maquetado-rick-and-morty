@@ -52,7 +52,7 @@ export const ContainerHome = styled.main`
     transition: 0.5s ease-in-out;
     .sidebar {
       width: ${({ show }) => (show ? "200px" : "0")};
-      height: 95%;  
+      height: 95%;
       overflow: hidden;
       transition: 0.5s ease-in-out;
     }
