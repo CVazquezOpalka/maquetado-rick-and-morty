@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import MyRoutes from "./routers/routes";
-
 import { getAllCharacters } from "./redux/character/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { totalPages } from "./redux/page/action";
