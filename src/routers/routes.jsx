@@ -9,23 +9,23 @@ import {
 } from "../Pages/index";
 import { Navbar, Footer } from "../components/index";
 
-
 const MyRoutes = () => {
   const location = useLocation();
 
-  const showNav = location.pathname === "/home" || location.pathname === "/" || location.pathname === "/favorite";
-  const showFoot = location.pathname === "/home" || location.pathname === "/";
- 
+  const showNav =
+    location.pathname === "/home" ||
+    location.pathname === "/favorite";
+  const showFoot = location.pathname === "/home";
+
   return (
     <>
       {showNav && <Navbar />}
-      
+
       <Routes>
-        <Route path="/home" element={<HomePage />} />
+        <Route path="/" element={<RegisterAndlogin />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/favorite" element={<FavoritePage />} />
         <Route path="/character/:id" element={<DetailPage />} />
-        <Route path="/auth" element={<RegisterAndlogin />} />
       </Routes>
       {showFoot && <Footer />}
     </>
