@@ -1,10 +1,17 @@
 import React from "react";
 import { Header } from "./style";
 import { NavLink } from "react-router-dom";
-
+import { UseAuth } from "../../context/AuthContext";
+import { RiShutDownLine } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
 
 export const Navbar = () => {
- 
+  const auth = UseAuth();
+  const navigate = useNavigate();
+  const handleSignOut = async () => {
+    auth.logOut();
+    navigate("/");
+  };
 
   return (
     <Header>
@@ -18,8 +25,8 @@ export const Navbar = () => {
         <span>
           <NavLink to="/favorite">Favorites</NavLink>
         </span>
-        <span>
-          <NavLink to="/auth">Login</NavLink>
+        <span style={{ cursor: "pointer" }} onClick={handleSignOut}>
+          <RiShutDownLine style={{ color: "red", fontSize: "30px" }} />
         </span>
       </nav>
     </Header>

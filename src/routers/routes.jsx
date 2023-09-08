@@ -13,8 +13,7 @@ const MyRoutes = () => {
   const location = useLocation();
 
   const showNav =
-    location.pathname === "/home" ||
-    location.pathname === "/favorite";
+    location.pathname === "/home" || location.pathname === "/favorite";
   const showFoot = location.pathname === "/home";
 
   return (
@@ -23,7 +22,7 @@ const MyRoutes = () => {
 
       <Routes>
         <Route path="/" element={<RegisterAndlogin />} />
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/home" element={<HomePage />} />
         <Route path="/favorite" element={<FavoritePage />} />
         <Route path="/character/:id" element={<DetailPage />} />
       </Routes>

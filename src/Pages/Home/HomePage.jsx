@@ -6,12 +6,19 @@ import {
   SearchBar,
   Pagination,
 } from "../../components/index";
+import { firebaseAuth } from "../../firebase.config";
+import { onAuthStateChanged } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
+  const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const handleShow = () => {
     setShow(!show);
   };
+  onAuthStateChanged(firebaseAuth, (user) => {
+    if (!user) navigate("/");
+  });
   return (
     <ContainerHome show={show}>
       <div className="search">
