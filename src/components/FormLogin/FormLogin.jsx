@@ -12,7 +12,7 @@ import { useDispatch } from "react-redux";
 export const FormLogin = () => {
   const auth = UseAuth();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  
   const [formLogin, setFormLogin] = useState({
     email: "",
     password: "",
@@ -35,6 +35,10 @@ export const FormLogin = () => {
     auth.loginWhitGoogle();
     navigate("/home");
   };
+
+  onAuthStateChanged(firebaseAuth, (user) => {
+    if (user) navigate("/home");
+  });
 
   return (
     <ContainerFromLogin>
