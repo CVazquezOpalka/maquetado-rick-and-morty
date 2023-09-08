@@ -1,12 +1,14 @@
 import { firebaseAuth } from "../firebase.config";
-import { useContext, createContext } from "react";
+import { useContext, createContext, useState, useEffect } from "react";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
   signOut,
+  onAuthStateChanged,
 } from "firebase/auth";
+
 
 export const AuthContext = createContext();
 
@@ -19,6 +21,16 @@ export const UseAuth = () => {
 };
 
 export function AuthProvider({ children }) {
+  const [user, setUser] = useState("");
+
+  useEffect(() => {
+    const suscribe = onAuthStateChanged(firebaseAuth, (currentUser) => {
+      if (currentUser) {
+        setUser(currentUser);
+      }
+    });
+    return () => suscribe();
+  }, []);
   const register = async (email, password) => {
     const response = await createUserWithEmailAndPassword(
       firebaseAuth,
