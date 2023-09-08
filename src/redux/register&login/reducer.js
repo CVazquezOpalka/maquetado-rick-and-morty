@@ -1,6 +1,6 @@
+import { CREATE_USER } from "./type";
+
 const initialState = {
-  userName: "",
-  userToken: "",
   userEmail: "",
 };
 
@@ -9,6 +9,11 @@ export const LoginAndRegisterReducer = (
   { type, payload }
 ) => {
   switch (type) {
+    case CREATE_USER:
+      return {
+        ...state,
+        userEmail: payload,
+      };
     default:
       return state;
   }
