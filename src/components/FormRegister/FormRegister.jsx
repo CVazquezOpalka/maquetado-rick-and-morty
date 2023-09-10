@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ContainerFormRegister } from "./style.js";
 import { AiOutlineUser, AiOutlineMail, AiOutlineLock } from "react-icons/ai";
 import { UseAuth } from "../../context/AuthContext.jsx";
+import Swal from "sweetalert2";
 
 export const FormRegister = ({ setIsClicked }) => {
   const auth = UseAuth();
@@ -23,7 +24,7 @@ export const FormRegister = ({ setIsClicked }) => {
     e.preventDefault();
     const { userName, email, password } = formRegister;
     auth.register(email, password);
-    alert("usuario creado con exito");
+    Swal.fire("user created successfully", "", "success");
     setIsClicked(false);
     setFormRegister({
       userName: "",
@@ -31,7 +32,7 @@ export const FormRegister = ({ setIsClicked }) => {
       password: "",
     });
   };
-  
+
   return (
     <ContainerFormRegister>
       <form action="" onSubmit={handleSubmit}>
