@@ -24,6 +24,7 @@ export const SearchBar = () => {
           <input
             type="text"
             placeholder="Busca tu personaje favorito..."
+            value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           <button>buscar</button>

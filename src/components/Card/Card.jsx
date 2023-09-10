@@ -1,8 +1,9 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CardContainer } from "./style";
 import { addCharacterToFavorite } from "../../redux/character/actions";
 import { useDispatch, useSelector } from "react-redux";
+import Swal from "sweetalert2";
 
 export const Card = ({ character }) => {
   const favorites = useSelector((state) => state.character.favorites);
@@ -14,12 +15,28 @@ export const Card = ({ character }) => {
   const heart = names.includes(character.name) ? redHeart : blackHeart;
 
   const handleFavorites = () => {
-    dispatch(addCharacterToFavorite(character));
+    if (names.includes(character.name)) {
+      Swal.fire({
+        icon: "error",
+        html: `<p>el personaje ${character.name} ya se encuentra en favoritos</p>`,
+      });
+      return;
+    } else {
+      dispatch(addCharacterToFavorite(character));
+      Swal.fire({
+        icon: "success",
+        title: "Favorites",
+        html: `<p>el personaje ${character.name} se agrego correctamente</p>`,
+      });
+    }
   };
 
   return (
     <CardContainer>
-      <img src={character.image} alt={character.name} />
+      <Link to={`/character/${character.id}`}>
+        <img src={character.image} alt={character.name} />
+      </Link>
+
       {character.status === "Alive" ? (
         <span className="badge alive">{character.status}</span>
       ) : character.status === "Dead" ? (

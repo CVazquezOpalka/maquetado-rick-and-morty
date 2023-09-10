@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import {
   GET_ALL_CHARACTERS,
   GET_CHARACTER,
@@ -47,7 +48,6 @@ export const characterReducer = (state = initialState, { type, payload }) => {
         (e) => e.name === payload.name
       );
       if (findCharacter) {
-        alert("El personaj ya se encuentra en Favoritos");
         return state;
       } else {
         const addCharacter = [...state.favorites, payload];

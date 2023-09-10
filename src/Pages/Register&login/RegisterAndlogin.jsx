@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ImgBg from "../../assets/allPlanets.jpg";
 import { PanelContainer } from "./style";
 import { FormLogin } from "../../components/FormLogin/FormLogin";
@@ -7,9 +7,9 @@ import { useNavigate } from "react-router-dom";
 
 
 const RegisterAndlogin = () => {
+  const navigate = useNavigate();
   const [isClicked, setIsClicked] = useState(false);
 
- 
 
   return (
     <PanelContainer>

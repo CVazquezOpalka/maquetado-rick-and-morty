@@ -49,7 +49,7 @@ export const PanelContainer = styled.div`
           justify-content: space-around;
           background-color: #fff;
           border-radius: 20px;
-          border: none;
+          border: 1px solid #fff;
           box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
           overflow: hidden;
           .active {
