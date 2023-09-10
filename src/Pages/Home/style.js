@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ContainerHome = styled.main`
   position: relative;
   width: 100%;
-  min-height: 100vh;
+  min-height: 300px;
   height: auto;
   background: rgb(63, 94, 251);
   background: radial-gradient(
@@ -44,7 +44,6 @@ export const ContainerHome = styled.main`
   }
   .contents {
     width: 100%;
-    height: 100%;
     display: grid;
     grid-template-columns: ${({ show }) => (show ? "200px auto" : "0 auto")};
     align-items: center;
