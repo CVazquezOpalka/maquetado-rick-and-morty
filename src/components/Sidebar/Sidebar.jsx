@@ -39,7 +39,6 @@ export const Sidebar = () => {
   console.log(filters);
   const handleRadioButtons = (e) => {
     const { name } = e.target;
-
     // Dependiendo del grupo de radio buttons, actualiza el estado correspondiente
     if (statusArr.includes(name)) {
       dispatch(statusFilter(name));

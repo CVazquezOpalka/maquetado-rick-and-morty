@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useEffect, useState } from "react";
 import { UseAuth } from "../../context/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
 import { ContainerFromLogin } from "./style.js";
@@ -9,7 +9,7 @@ import { FcGoogle } from "react-icons/fc";
 export const FormLogin = () => {
   const auth = UseAuth();
   const navigate = useNavigate();
-  const [isLoading,setIsLoading] = useState(false)
+  const [isLogin, setIsLogin] = useState(false);
   const [formLogin, setFormLogin] = useState({
     email: "",
     password: "",
@@ -23,17 +23,21 @@ export const FormLogin = () => {
   };
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true)
     const { email, password } = formLogin;
     auth.signIn(email, password);
-    setIsLoading(false)
+    setIsLogin(true);
     navigate("/home");
+    setFormLogin({
+      email: "",
+      password: "",
+    });
   };
   const handleGoogle = (e) => {
     e.preventDefault();
     auth.loginWhitGoogle();
     navigate("/home");
   };
+
 
 
   return (
