@@ -6,8 +6,6 @@ import {
   SearchBar,
   Pagination,
 } from "../../components/index";
-import { firebaseAuth } from "../../firebase.config";
-import { onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
@@ -16,9 +14,12 @@ const HomePage = () => {
   const handleShow = () => {
     setShow(!show);
   };
-  onAuthStateChanged(firebaseAuth, (user) => {
-    if (!user) navigate("/");
-  });
+  const handleScroll = () => {
+    window.scroll({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return (
     <ContainerHome show={show}>
       <div className="search">
@@ -39,6 +40,9 @@ const HomePage = () => {
       </div>
       <div className="paginate">
         <Pagination />
+      </div>
+      <div className="btn-slide">
+        <button onClick={handleScroll}>subir</button>
       </div>
     </ContainerHome>
   );

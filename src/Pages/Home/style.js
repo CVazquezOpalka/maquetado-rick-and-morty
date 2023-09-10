@@ -70,4 +70,20 @@ export const ContainerHome = styled.main`
     height: 70px;
     margin: 0 auto;
   }
+  .btn-slide {
+    position: absolute;
+    bottom: -70px;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    button {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: none;
+    }
+  }
 `;

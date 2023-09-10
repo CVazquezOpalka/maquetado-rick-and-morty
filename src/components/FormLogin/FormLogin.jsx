@@ -1,18 +1,15 @@
-import React, { useState, useContext } from "react";
+import React, { useState} from "react";
 import { UseAuth } from "../../context/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
 import { ContainerFromLogin } from "./style.js";
-import { createUser } from "../../redux/register&login/action";
 import { AiOutlineUser, AiOutlineLock } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
-import { firebaseAuth } from "../../firebase.config";
-import { onAuthStateChanged } from "firebase/auth";
-import { useDispatch } from "react-redux";
+
 
 export const FormLogin = () => {
   const auth = UseAuth();
   const navigate = useNavigate();
-
+  const [isLoading,setIsLoading] = useState(false)
   const [formLogin, setFormLogin] = useState({
     email: "",
     password: "",
@@ -26,8 +23,10 @@ export const FormLogin = () => {
   };
   const handleOnSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true)
     const { email, password } = formLogin;
     auth.signIn(email, password);
+    setIsLoading(false)
     navigate("/home");
   };
   const handleGoogle = (e) => {
@@ -36,9 +35,6 @@ export const FormLogin = () => {
     navigate("/home");
   };
 
-  onAuthStateChanged(firebaseAuth, (user) => {
-    if (user) navigate("/home");
-  });
 
   return (
     <ContainerFromLogin>
