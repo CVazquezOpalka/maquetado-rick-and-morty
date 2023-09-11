@@ -39,6 +39,7 @@ export const WrapperSidebar = styled.div`
     overflow: hidden;
     width: 100%;
     color: #fff;
+    transition: all 0.3s ease-in;
     h2 {
       width: 100%;
       text-align: center;
