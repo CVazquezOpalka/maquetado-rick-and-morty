@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
-  ContainerSidebar,
-  FilterBar,
-  StatusContainer,
-  GenderContainer,
-  SpeciesContainer,
+  WrapperSidebar,
+  TitleAcordion,
+  ContentAcordion,
+  ItemContainer,
+  InputField,
 } from "./style";
-
 import {
   genderFilter,
   statusFilter,
@@ -16,10 +15,42 @@ import {
 import { updatePagination } from "../../redux/page/action";
 import { useDispatch, useSelector } from "react-redux";
 
-export const Sidebar = () => {
+export const Sidebar = ({ handleShow, show }) => {
   const dispatch = useDispatch();
   const { status, gender, species } = useSelector((state) => state.filters);
-
+  const character = useSelector((state) => state.character.searchCharacters);
+  const [selected, setSelected] = useState(null);
+  const toogle = (i) => {
+    if (selected === i) {
+      return setSelected(null);
+    }
+    setSelected(i);
+  };
+  const data = [
+    {
+      title: "Status",
+      value: ["alive", "dead", "unknown"],
+    },
+    {
+      title: "Gender",
+      value: ["female", "male", "genderless"],
+    },
+    {
+      title: "Species",
+      value: [
+        "Human",
+        "Alien",
+        "Humanoid",
+        "Poopybutthole",
+        "Mythological",
+        "Unknown",
+        "Animal",
+        "Disease",
+        "Robot",
+        "Cronenberg",
+      ],
+    },
+  ];
   const statusArr = ["alive", "dead", "unknown"];
   const genderArr = ["female", "male", "genderless", "unknown"];
   let speciesArr = [
@@ -33,96 +64,105 @@ export const Sidebar = () => {
     "Disease",
     "Robot",
     "Cronenberg",
-    "Planet",
   ];
   const [filters, setFilters] = useState([]);
-  console.log(filters);
+
   const handleRadioButtons = (e) => {
     const { name } = e.target;
+
+    // Remover el filtro anterior del mismo tipo si existe
+    const updatedFilters = filters.filter((filter) => {
+      return (
+        (statusArr.includes(name) && !statusArr.includes(filter)) ||
+        (genderArr.includes(name) && !genderArr.includes(filter)) ||
+        (speciesArr.includes(name) && !speciesArr.includes(filter)) ||
+        character === filters
+      );
+    });
+    // Agregar el nuevo filtro al estado
+    updatedFilters.push(name);
+    // Actualizar el estado de los filtros
+    setFilters(updatedFilters);
     // Dependiendo del grupo de radio buttons, actualiza el estado correspondiente
     if (statusArr.includes(name)) {
       dispatch(statusFilter(name));
       dispatch(updatePagination());
-      setFilters((prevFilters) => prevFilters.concat(name));
     } else if (genderArr.includes(name)) {
       dispatch(genderFilter(name));
       dispatch(updatePagination());
-      setFilters((prevFilters) => prevFilters.concat(name));
     } else if (speciesArr.includes(name)) {
       dispatch(speciesFilter(name));
       dispatch(updatePagination());
-      setFilters((prevFilters) => prevFilters.concat(name));
     }
   };
 
   return (
-    <ContainerSidebar heigth={filters.length}>
-      <FilterBar show={filters.length}>
-        <h3>Filtros Aplicados</h3>
-        <div className="filters">
-          {filters.map((e, index) => (
-            <span key={index}>{e}</span>
-          ))}
-        </div>
-        <div className="btn-filters">
-          <button
-            onClick={() => {
-              dispatch(updateFilter());
-              setFilters([]);
-            }}
-          >
-            clear filter
+    <>
+      {/* <ContainerSidebar heigth={filters.length}>
+    
+    </ContainerSidebar> */}
+      <WrapperSidebar show={show}>
+        <div className="btn">
+          <button onClick={handleShow}>
+            <p>Filtros</p>
           </button>
         </div>
-      </FilterBar>
-      <StatusContainer>
-        <h3>Status</h3>
-        <div className="status">
-          {statusArr.map((e, index) => (
-            <div className="input-field" key={index}>
-              <input
-                type="radio"
-                name={e}
-                onChange={handleRadioButtons}
-                checked={e === status ? true : false}
-              />
-              <label htmlFor="status">{e}</label>
-            </div>
-          ))}
+        <div className="filters-selected">
+          <h2>Filters</h2>
+          <div className="filters">
+            {filters.map((e, i) => (
+              <span onClick={() => {dispatch(updateFilter())
+              setFilters([])}} key={i}>
+                {e}
+              </span>
+            ))}
+          </div>
         </div>
-      </StatusContainer>
-      <GenderContainer>
-        <h3>Gender</h3>
-        <div className="gender">
-          {genderArr.map((e, index) => (
-            <div className="input-field" key={index}>
-              <input
-                type="radio"
-                name={e}
-                onChange={handleRadioButtons}
-                checked={e === gender ? true : false}
-              />
-              <label>{e}</label>
-            </div>
-          ))}
+        {data.map((item, i) => (
+          <ItemContainer>
+            <TitleAcordion onClick={() => toogle(i)}>
+              <h2>{item.title}</h2>
+              <span>{selected === i ? "-" : "+"}</span>
+            </TitleAcordion>
+            <ContentAcordion className={selected === i ? "show" : ""}>
+              {item.value.map((e, i) => (
+                <InputField>
+                  <input
+                    type="radio"
+                    name={e}
+                    onChange={handleRadioButtons}
+                    checked={
+                      e === status
+                        ? true
+                        : e === gender
+                        ? true
+                        : e === species
+                        ? true
+                        : false
+                    }
+                  />
+                  <label htmlFor={e}>{e}</label>
+                </InputField>
+              ))}
+            </ContentAcordion>
+          </ItemContainer>
+        ))}
+        <div className="div-btn-clear">
+          {(status.trim() !== "" ||
+            gender.trim() !== "" ||
+            species.trim() !== "") && (
+            <button
+              className="btn-clear"
+              onClick={() => {
+                dispatch(updateFilter());
+                setFilters([]);
+              }}
+            >
+              Clear Filters
+            </button>
+          )}
         </div>
-      </GenderContainer>
-      <SpeciesContainer>
-        <h3>Species</h3>
-        <div className="species">
-          {speciesArr.map((e, index) => (
-            <div className="input-field" key={index}>
-              <input
-                type="radio"
-                name={e}
-                onChange={handleRadioButtons}
-                checked={e === species ? true : false}
-              />
-              <label>{e}</label>
-            </div>
-          ))}
-        </div>
-      </SpeciesContainer>
-    </ContainerSidebar>
+      </WrapperSidebar>
+    </>
   );
 };

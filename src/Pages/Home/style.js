@@ -17,41 +17,17 @@ export const ContainerHome = styled.main`
     justify-content: center;
     padding-top: 30px;
   }
-  .btn {
-    position: absolute;
-    top: 15%;
-    left: ${({ show }) => (show ? "200px" : "0")};
-    transition: 0.5s ease-in-out;
-    button {
-      width: 45px;
-      height: 100px;
-      background-color: #111;
-      border: none;
-      border-radius: 0 10px 10px 0;
-      cursor: pointer;
-      color: #fff;
-      font-size: 16px;
-      letter-spacing: 2px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      p {
-        height: 15px;
-        transform: rotate(90deg);
-      }
-    }
-  }
   .contents {
     width: 100%;
     display: grid;
     grid-template-columns: ${({ show }) => (show ? "200px auto" : "0 auto")};
-    align-items: center;
+    align-items: start;
     justify-items: center;
     transition: 0.5s ease-in-out;
     .sidebar {
+      margin: 50px;
       width: ${({ show }) => (show ? "200px" : "0")};
-      height: 95%;
-      overflow: hidden;
+      height: auto;
       transition: 0.5s ease-in-out;
     }
     .content {

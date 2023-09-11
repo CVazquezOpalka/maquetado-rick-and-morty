@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
   const handleShow = () => {
     setShow(!show);
   };
@@ -25,14 +25,10 @@ const HomePage = () => {
       <div className="search">
         <SearchBar />
       </div>
-      <div className="btn">
-        <button onClick={handleShow}>
-          <p>Filtros</p>
-        </button>
-      </div>
+
       <div className="contents">
         <div className="sidebar">
-          <Sidebar />
+          <Sidebar show={show} handleShow={handleShow} />
         </div>
         <div className="content">
           <CardContext />

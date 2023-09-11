@@ -1,181 +1,137 @@
 import styled from "styled-components";
 
-export const ContainerSidebar = styled.aside`
-  width: 100%;
-  height: 1100px;
-  display: grid;
-  background-color: #111;
-  border-radius: 0 10px 10px 0;
-  grid-template-rows: 150px 200px 200px 500px;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-areas:
-    "a1 a1"
-    "a2 a2"
-    "a3 a3"
-    "a4 a4";
-  place-items: center;
-  overflow: hidden;
-`;
-export const FilterBar = styled.div`
-  grid-area: a1;
+export const WrapperSidebar = styled.div`
+  position: relative;
   width: 100%;
   height: 100%;
-  overflow: hidden;
   display: flex;
-  flex-direction: column;
-  h3 {
-    margin-top: 5px;
-    margin-bottom: 5px;
-    color: #fff;
-    text-decoration: underline;
-    width: 100%;
-    text-align: center;
-    overflow: hidden;
-  }
-  .filters {
-    width: 100%;
-    height: auto;
-    margin-bottom: 5px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    align-items: center;
-    justify-items: center;
-    gap: 5px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 10px 10px 0;
+  background-color: #111;
 
-    span {
-      background-color: grey;
-      padding: 2px 4px;
-      border-radius: 5px;
+  .btn {
+    position: absolute;
+    top: 10%;
+    left: 100%;
+    transition: 0.5s ease-in-out;
+    button {
+      width: 45px;
+      height: 100px;
+      background-color: #111;
+      border: none;
+      border-radius: 0 10px 10px 0;
+      cursor: pointer;
       color: #fff;
-      font-weight: bold;
+      font-size: 16px;
+      letter-spacing: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      p {
+        height: 15px;
+        transform: rotate(90deg);
+      }
     }
   }
-  .btn-filters {
+  .filters-selected {
+    overflow: hidden;
     width: 100%;
-    height: 40px;
+    color: #fff;
+    h2 {
+      width: 100%;
+      text-align: center;
+      text-decoration: underline;
+    }
+    .filters {
+      margin-top: 5px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      span {
+        position: relative;
+        background-color: blue;
+        font-weight: bold;
+        padding: 6px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        &::before {
+          content: "x";
+          position: absolute;
+          top: -3px;
+          left: -3px;
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background-color: blue;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 10px;
+        }
+      }
+    }
+  }
+  .div-btn-clear {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    button {
+    .btn-clear {
       background-color: blue;
       border: none;
-      padding: 3px 7px;
-      border-radius: 8px;
+      padding: 5px 10px;
+      border-radius: 5px;
       color: #fff;
       text-transform: capitalize;
       font-weight: bold;
+      margin-bottom: 10px;
       transition: 0.3s ease-in-out;
+
+      cursor: pointer;
       &:hover {
         background-color: #191567;
       }
     }
   }
 `;
-export const StatusContainer = styled.div`
-  grid-area: a2;
+export const ItemContainer = styled.div`
   width: 100%;
-  height: 100%;
+  margin-bottom: 5px;
+  padding: 10px 20px;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  h3 {
-    margin: 5px 0;
-    width: 100%;
-    text-align: center;
-    color: #fff;
-    text-decoration: underline;
-  }
-  .status {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    .input-field {
-      width: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 5px;
-      label {
-        color: #fff;
-        font-weight: 600;
-      }
-    }
-  }
-`;
-export const GenderContainer = styled.div`
-  grid-area: a3;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  h3 {
-    margin-top: 5px;
-    margin-bottom: 5px;
-    width: 100%;
-    text-align: center;
-    text-decoration: underline;
-    color: #fff;
-  }
-  .gender {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    .input-field {
-      width: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 5px;
-      label {
-        color: #fff;
-        font-weight: 600;
-      }
-    }
+  .show {
+    height: auto;
+    max-height: 9999px;
+    transition: all 0.5s cubic-bezier(1, 0, 1, 0);
   }
 `;
 
-export const SpeciesContainer = styled.div`
-  grid-area: a4;
-  width: 100%;
-  height: 100%;
-
+export const TitleAcordion = styled.div`
+  overflow: hidden;
+  color: #fff;
   display: flex;
-  flex-direction: column;
-  h3 {
-    margin-top: 5px;
-    margin-bottom: 5px;
-    width: 100%;
-    text-align: center;
-    text-decoration: underline;
-    color: #fff;
-  }
-  .species {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    .input-field {
-      width: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 5px;
-      label {
-        color: #fff;
-        font-weight: 600;
-      }
-    }
-  }
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+`;
+
+export const ContentAcordion = styled.div`
+  color: #8b7f75;
+  overflow: hidden;
+  max-height: 0;
+  transition: all 0.5s cubic-bezier(0, 1, 0, 1);
+`;
+
+export const InputField = styled.div`
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 `;
