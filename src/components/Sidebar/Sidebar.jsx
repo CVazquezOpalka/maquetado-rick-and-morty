@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   WrapperSidebar,
   TitleAcordion,
@@ -12,6 +12,7 @@ import {
   speciesFilter,
   updateFilter,
 } from "../../redux/filters/actions";
+import { updateSearch } from "../../redux/character/actions";
 import { updatePagination } from "../../redux/page/action";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -95,6 +96,11 @@ export const Sidebar = ({ handleShow, show }) => {
       dispatch(updatePagination());
     }
   };
+  const updateState = () => {
+    dispatch(updateFilter());
+    dispatch(updateSearch());
+    setFilters([]);
+  };
 
   return (
     <>
@@ -107,17 +113,24 @@ export const Sidebar = ({ handleShow, show }) => {
             <p>Filtros</p>
           </button>
         </div>
-        <div className="filters-selected">
-          <h2>Filters</h2>
-          <div className="filters">
-            {filters.map((e, i) => (
-              <span onClick={() => {dispatch(updateFilter())
-              setFilters([])}} key={i}>
-                {e}
-              </span>
-            ))}
+        {filters.length === 0 ? null : (
+          <div className="filters-selected">
+            <h2>Filters</h2>
+            <div className="filters">
+              {filters.map((e, i) => (
+                <span
+                  onClick={() => {
+                    dispatch(updateFilter());
+                    setFilters([]);
+                  }}
+                  key={i}
+                >
+                  {e}
+                </span>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
         {data.map((item, i) => (
           <ItemContainer>
             <TitleAcordion onClick={() => toogle(i)}>
@@ -151,13 +164,7 @@ export const Sidebar = ({ handleShow, show }) => {
           {(status.trim() !== "" ||
             gender.trim() !== "" ||
             species.trim() !== "") && (
-            <button
-              className="btn-clear"
-              onClick={() => {
-                dispatch(updateFilter());
-                setFilters([]);
-              }}
-            >
+            <button className="btn-clear" onClick={updateState}>
               Clear Filters
             </button>
           )}
