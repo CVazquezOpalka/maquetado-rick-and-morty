@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const ContainerHome = styled.main`
   position: relative;
   width: 100%;
-  min-height: 300px;
   height: auto;
   background: rgb(63, 94, 251);
   background: radial-gradient(
@@ -57,7 +56,6 @@ export const ContainerHome = styled.main`
     }
     .content {
       width: ${({ show }) => (show ? "calc(1300px - 200px)" : "1300px")};
-      height: auto;
       display: flex;
       align-items: center;
       justify-content: center;
