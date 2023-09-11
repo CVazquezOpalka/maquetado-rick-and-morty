@@ -6,6 +6,5 @@ export * from "./HeaderDetail/HeaderDetail";
 export * from "./LoginForm/LoginForm";
 export * from "./Navbar/Navbar";
 export * from "./Pagination/Pagination";
-export * from "./RegisterForm/RegisterForm";
 export * from "./SearchBar/SearchBar";
 export * from "./Sidebar/Sidebar";

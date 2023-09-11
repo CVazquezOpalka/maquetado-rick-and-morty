@@ -10,7 +10,6 @@ const RegisterAndlogin = () => {
   const navigate = useNavigate();
   const [isClicked, setIsClicked] = useState(false);
 
-
   return (
     <PanelContainer>
       <div className="img-bg">
