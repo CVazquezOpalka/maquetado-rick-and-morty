@@ -9,27 +9,24 @@ const initialState = {
   gender: "",
   status: "",
   species: "",
-  loadingFilters: false,
+  loadingFilters: true,
 };
 
 export const filterReducers = (state = initialState, { type, payload }) => {
   switch (type) {
     case GENDER_FILTER:
-      state.loadingFilters = true;
       return {
         ...state,
         gender: payload,
         loadingFilters: false,
       };
     case STATUS_FILTER:
-      state.loadingFilters = true;
       return {
         ...state,
         status: payload,
         loadingFilters: false,
       };
     case SPECIES_FILTER:
-      state.loadingFilters = true;
       return {
         ...state,
         species: payload,
@@ -41,7 +38,7 @@ export const filterReducers = (state = initialState, { type, payload }) => {
         gender: "",
         species: "",
         status: "",
-        loadingFilters: false,
+        loadingFilters: true,
       };
     default:
       return state;

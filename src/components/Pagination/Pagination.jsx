@@ -1,27 +1,52 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ReactPaginate from "react-paginate";
 import { useDispatch, useSelector } from "react-redux";
 import { PaginationContainer } from "./style";
-import { updateButtonPagination } from "../../redux/page/action";
+import { nextPage, prevPage } from "../../redux/page/action";
 
 export const Pagination = () => {
-  const pagination = useSelector((state) => state.pagination.totalPages);
+  const { totalPages, actualPage } = useSelector((state) => state.pagination);
   const dispatch = useDispatch();
+  const [prevButtonDisabled, setPrevButtonDisabled] = useState(true);
+  const [nextButtonDisabled, setNextButtonDisabled] = useState(false);
+
+  const updateButtonStatus = () => {
+    setPrevButtonDisabled(actualPage <= 1);
+    setNextButtonDisabled(actualPage >= totalPages);
+  };
+  console.log(totalPages);
+  // Llama a la función para actualizar el estado de los botones cuando se renderiza el componente
+  useEffect(() => {
+    updateButtonStatus();
+  }, [actualPage, totalPages]);
+
   return (
     <PaginationContainer>
-      <ReactPaginate
-        className="pagination"
-        pageClassName="page-item"
-        pageLinkClassName="page-link"
-        pageCount={pagination}
-        nextLabel="Next"
-        previousLabel="Prev"
-        nextClassName="next"
-        previousClassName="prev"
-        onPageChange={(data) => {
-          dispatch(updateButtonPagination(data.selected + 1));
-        }}
-      />
+      <div className="pagination">
+        <button
+          className="prev"
+          onClick={() => {
+            dispatch(prevPage());
+            updateButtonStatus();
+          }}
+          disabled={prevButtonDisabled}
+        >
+          Prev
+        </button>
+        <h3 className="page-item">
+          <span>{actualPage}</span> de {totalPages}
+        </h3>
+        <button
+          className="next"
+          onClick={() => {
+            dispatch(nextPage());
+            updateButtonStatus();
+          }}
+          disabled={nextButtonDisabled}
+        >
+          Next
+        </button>
+      </div>
     </PaginationContainer>
   );
 };

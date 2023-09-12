@@ -24,9 +24,6 @@ export const PaginationReducer = (state = initialState, { type, payload }) => {
         actualPage: state.actualPage + 1,
       };
     case PREV_PAGE:
-      if (actualPage > 1) {
-        return state;
-      }
       return {
         ...state,
         actualPage: state.actualPage - 1,
