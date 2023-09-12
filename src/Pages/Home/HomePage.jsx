@@ -7,6 +7,8 @@ import {
   Pagination,
 } from "../../components/index";
 import { useNavigate } from "react-router-dom";
+import { onAuthStateChanged } from "firebase/auth";
+import { firebaseAuth } from "../../firebase.config";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -20,6 +22,9 @@ const HomePage = () => {
       behavior: "smooth",
     });
   };
+  onAuthStateChanged(firebaseAuth, (user) => {
+    if (user) navigate("/home");
+  });
   return (
     <ContainerHome show={show}>
       <div className="search">
