@@ -70,21 +70,6 @@ export const Sidebar = ({ handleShow, show }) => {
 
   const handleRadioButtons = (e) => {
     const { name } = e.target;
-
-    // Remover el filtro anterior del mismo tipo si existe
-    const updatedFilters = filters.filter((filter) => {
-      return (
-        (statusArr.includes(name) && !statusArr.includes(filter)) ||
-        (genderArr.includes(name) && !genderArr.includes(filter)) ||
-        (speciesArr.includes(name) && !speciesArr.includes(filter)) ||
-        character === filters
-      );
-    });
-    // Agregar el nuevo filtro al estado
-    updatedFilters.push(name);
-    // Actualizar el estado de los filtros
-    setFilters(updatedFilters);
-    // Dependiendo del grupo de radio buttons, actualiza el estado correspondiente
     if (statusArr.includes(name)) {
       dispatch(statusFilter(name));
       dispatch(updatePagination());
@@ -99,7 +84,7 @@ export const Sidebar = ({ handleShow, show }) => {
   const updateState = () => {
     dispatch(updateFilter());
     dispatch(updateSearch());
-    setFilters([]);
+  
   };
 
   return (
@@ -113,24 +98,6 @@ export const Sidebar = ({ handleShow, show }) => {
             <p>Filtros</p>
           </button>
         </div>
-        {filters.length === 0 ? null : (
-          <div className="filters-selected">
-            <h2>Filters</h2>
-            <div className="filters">
-              {filters.map((e, i) => (
-                <span
-                  onClick={() => {
-                    dispatch(updateFilter());
-                    setFilters([]);
-                  }}
-                  key={i}
-                >
-                  {e}
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
         {data.map((item, i) => (
           <ItemContainer>
             <TitleAcordion onClick={() => toogle(i)}>
@@ -154,7 +121,7 @@ export const Sidebar = ({ handleShow, show }) => {
                         : false
                     }
                   />
-                  <label htmlFor={e}>{e}</label>
+                  <label>{e}</label>
                 </InputField>
               ))}
             </ContentAcordion>

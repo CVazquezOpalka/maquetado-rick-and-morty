@@ -9,10 +9,13 @@ import {
 import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { firebaseAuth } from "../../firebase.config";
+import { useSelector } from "react-redux";
+import { Loader } from "../../components/Loader/Loader";
 
 const HomePage = () => {
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
+  const loading = useSelector((state) => state.character.isLoading);
   const handleShow = () => {
     setShow(!show);
   };
@@ -26,26 +29,32 @@ const HomePage = () => {
     if (user) navigate("/home");
   });
   return (
-    <ContainerHome show={show}>
-      <div className="search">
-        <SearchBar />
-      </div>
+    <>
+      {loading ? (
+        <Loader />
+      ) : (
+        <ContainerHome show={show}>
+          <div className="search">
+            <SearchBar />
+          </div>
 
-      <div className="contents">
-        <div className="sidebar">
-          <Sidebar show={show} handleShow={handleShow} />
-        </div>
-        <div className="content">
-          <CardContext />
-        </div>
-      </div>
-      <div className="paginate">
-        <Pagination />
-      </div>
-      <div className="btn-slide">
-        <button onClick={handleScroll}>subir</button>
-      </div>
-    </ContainerHome>
+          <div className="contents">
+            <div className="sidebar">
+              <Sidebar show={show} handleShow={handleShow} />
+            </div>
+            <div className="content">
+              <CardContext />
+            </div>
+          </div>
+          <div className="paginate">
+            <Pagination />
+          </div>
+          <div className="btn-slide">
+            <button onClick={handleScroll}>subir</button>
+          </div>
+        </ContainerHome>
+      )}
+    </>
   );
 };
 

@@ -42,23 +42,14 @@ export const PaginationContainer = styled.div`
     }
   }
   .page-item{
-    width: 35px;
-    height: 35px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #fff;
-    border-radius: 5px;
-    background-color: #fff;
-    font-weight: bold;
-    cursor: pointer;
-    pointer-events: all;
-  }
-  .page-link{
-    width: 35px;
-    height: 35px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+     color: #fff;
+     font-weight: bold;
+     text-align: center;
+     display: flex;
+     align-items: center; justify-content: center;
+     gap: 10px;
+     span{
+      font-weight: 400;
+     }
   }
 `;

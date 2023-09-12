@@ -5,6 +5,7 @@ import {
   getCharacter,
   updateCharacterDetail,
 } from "../../redux/character/actions";
+import { Loader } from "../../components/Loader/Loader";
 import { HeaderDetail } from "../../components/HeaderDetail/HeaderDetail";
 
 import {
@@ -35,7 +36,7 @@ const DetailPage = () => {
   return (
     <>
       {loading ? (
-        <h1>Cargandoo...</h1>
+        <Loader />
       ) : (
         <>
           <HeaderDetail />

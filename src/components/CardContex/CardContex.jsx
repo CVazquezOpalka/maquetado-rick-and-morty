@@ -2,6 +2,7 @@ import React from "react";
 import { ContainerCardContex } from "./style";
 import { Card } from "../Card/Card";
 import { useSelector } from "react-redux";
+import { Loader } from "../Loader/Loader";
 
 export const CardContext = () => {
   const statecharacters = useSelector((state) => state.character.characters);
@@ -9,7 +10,7 @@ export const CardContext = () => {
   return (
     <ContainerCardContex>
       {loading ? (
-        <h1>cargando</h1>
+        <Loader />
       ) : statecharacters ? (
         statecharacters.map((e) => <Card key={e.id} character={e} />)
       ) : (
