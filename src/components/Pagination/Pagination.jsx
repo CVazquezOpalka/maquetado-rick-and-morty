@@ -14,7 +14,7 @@ export const Pagination = () => {
     setPrevButtonDisabled(actualPage <= 1);
     setNextButtonDisabled(actualPage >= totalPages);
   };
-  console.log(totalPages);
+
   // Llama a la función para actualizar el estado de los botones cuando se renderiza el componente
   useEffect(() => {
     updateButtonStatus();
