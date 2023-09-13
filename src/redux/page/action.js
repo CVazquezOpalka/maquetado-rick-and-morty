@@ -6,10 +6,9 @@ import {
   UPDATE_PAGINATION,
 } from "./type";
 
-export const totalPages = () => async (dispatch) => {
-  const URL = "https://rickandmortyapi.com/api/character";
+export const totalPages = (url) => async (dispatch) => {
   try {
-    const response = await fetch(URL);
+    const response = await fetch(url);
     const data = await response.json();
     dispatch({
       type: TOTAL_PAGE,

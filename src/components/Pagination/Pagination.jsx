@@ -14,8 +14,7 @@ export const Pagination = () => {
     setPrevButtonDisabled(actualPage <= 1);
     setNextButtonDisabled(actualPage >= totalPages);
   };
-  console.log(totalPages);
-  // Llama a la función para actualizar el estado de los botones cuando se renderiza el componente
+
   useEffect(() => {
     updateButtonStatus();
   }, [actualPage, totalPages]);
@@ -24,7 +23,7 @@ export const Pagination = () => {
     <PaginationContainer>
       <div className="pagination">
         <button
-          className="prev"
+          className={`prev ${prevButtonDisabled ? "danger" : ""}`}
           onClick={() => {
             dispatch(prevPage());
             updateButtonStatus();
@@ -37,7 +36,7 @@ export const Pagination = () => {
           <span>{actualPage}</span> de {totalPages}
         </h3>
         <button
-          className="next"
+          className={`next ${nextButtonDisabled ? "danger" : ""}`}
           onClick={() => {
             dispatch(nextPage());
             updateButtonStatus();

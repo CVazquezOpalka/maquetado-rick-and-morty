@@ -1,15 +1,14 @@
 import React from "react";
 import { Header } from "./style";
 import { NavLink } from "react-router-dom";
-import { UseAuth } from "../../context/AuthContext";
 import { RiShutDownLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 
 export const Navbar = () => {
-  const auth = UseAuth();
+
   const navigate = useNavigate();
   const handleSignOut = async () => {
-    auth.logOut();
+
     navigate("/");
   };
 

@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { ContainerFormRegister } from "./style.js";
 import { AiOutlineUser, AiOutlineMail, AiOutlineLock } from "react-icons/ai";
-import { UseAuth } from "../../context/AuthContext.jsx";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
 export const FormRegister = ({ setIsClicked }) => {
-  const auth = UseAuth();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [formRegister, setFormRegister] = useState({
@@ -27,7 +25,6 @@ export const FormRegister = ({ setIsClicked }) => {
     e.preventDefault();
     setIsLoading(true);
     const { userName, email, password } = formRegister;
-    auth.register(email, password);
     setIsLoading(false);
     Swal.fire("user created successfully", "", "success").then(
       navigate("/home")

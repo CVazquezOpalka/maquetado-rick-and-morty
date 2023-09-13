@@ -3,7 +3,6 @@ import MyRoutes from "./routers/routes";
 import { getAllCharacters } from "./redux/character/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { totalPages } from "./redux/page/action";
-import { AuthProvider } from "./context/AuthContext";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -14,13 +13,11 @@ const App = () => {
 
   useEffect(() => {
     dispatch(getAllCharacters(URL));
-    dispatch(totalPages());
+    dispatch(totalPages(URL));
   }, [dispatch, page, search, status, gender, species]);
   return (
     <>
-      <AuthProvider>
-        <MyRoutes />
-      </AuthProvider>
+      <MyRoutes />
     </>
   );
 };

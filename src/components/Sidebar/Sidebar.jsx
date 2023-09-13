@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   WrapperSidebar,
   TitleAcordion,
@@ -16,10 +16,9 @@ import { updateSearch } from "../../redux/character/actions";
 import { updatePagination } from "../../redux/page/action";
 import { useDispatch, useSelector } from "react-redux";
 
-export const Sidebar = ({ handleShow, show }) => {
+export const Sidebar = ({show, handleShow}) => {
   const dispatch = useDispatch();
   const { status, gender, species } = useSelector((state) => state.filters);
-  const character = useSelector((state) => state.character.searchCharacters);
   const [selected, setSelected] = useState(null);
   const toogle = (i) => {
     if (selected === i) {
@@ -84,15 +83,11 @@ export const Sidebar = ({ handleShow, show }) => {
   const updateState = () => {
     dispatch(updateFilter());
     dispatch(updateSearch());
-  
   };
 
   return (
     <>
-      {/* <ContainerSidebar heigth={filters.length}>
-    
-    </ContainerSidebar> */}
-      <WrapperSidebar show={show}>
+      <WrapperSidebar>
         <div className="btn">
           <button onClick={handleShow}>
             <p>Filtros</p>
@@ -106,7 +101,7 @@ export const Sidebar = ({ handleShow, show }) => {
             </TitleAcordion>
             <ContentAcordion className={selected === i ? "show" : ""}>
               {item.value.map((e, i) => (
-                <InputField>
+                <InputField key={i}>
                   <input
                     type="radio"
                     name={e}

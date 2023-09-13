@@ -7,6 +7,7 @@ import {
 } from "../../redux/character/actions";
 import { Loader } from "../../components/Loader/Loader";
 import { HeaderDetail } from "../../components/HeaderDetail/HeaderDetail";
+import { updatePagination } from "../../redux/page/action";
 
 import {
   DetailContainer,
@@ -26,6 +27,7 @@ const DetailPage = () => {
 
   const handleClick = () => {
     dispatch(updateCharacterDetail());
+    dispatch(updatePagination());
     navigate("/home");
   };
 

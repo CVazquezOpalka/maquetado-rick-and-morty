@@ -1,6 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { searchCharacter, updateSearch } from "../../redux/character/actions";
+import {
+  searchCharacterOk,
+  searchCharacter,
+  updateSearch,
+} from "../../redux/character/actions";
 import { ContainerSearch } from "./style";
 
 export const SearchBar = () => {
@@ -10,10 +14,11 @@ export const SearchBar = () => {
 
   const handleSubmmit = (e) => {
     e.preventDefault();
+    dispatch(searchCharacter);
     if (searchTerm.trim() === "") {
       alert("debes agregar un nombre para realizar la busqueda");
     } else {
-      dispatch(searchCharacter(searchTerm));
+      dispatch(searchCharacterOk(searchTerm));
       setSearchTerm("");
     }
   };
