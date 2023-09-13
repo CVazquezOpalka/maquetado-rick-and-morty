@@ -11,13 +11,15 @@ const FavoritePage = () => {
         <h1>Personajes agregados a Favoritos</h1>
       </div>
       {favoriteState.length === 0 ? (
-        <h1 style={{textAlign: "center", width: "100%", lineHeight:"360px"}}> No se agregaron personajes a favoritos</h1>
+        <h1 style={{ textAlign: "center", width: "100%", lineHeight: "360px" }}>
+          No se agregaron personajes a favoritos
+        </h1>
       ) : (
-        favoriteState.map((e) => (
-          <div className="grid">
-            <CardFavorite key={e.id} character={e} />
-          </div>
-        ))
+        <div className="grid">
+          {favoriteState.map((e) => (
+          <CardFavorite key={e.id} character={e} />
+          ))}
+        </div>
       )}
     </FavoriteContainer>
   );

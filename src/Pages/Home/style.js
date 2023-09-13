@@ -45,7 +45,7 @@ export const ContainerHome = styled.main`
   }
   .btn-slide {
     position: absolute;
-    bottom: -70px;
+    bottom: -20px;
     right: 10px;
     width: 50px;
     height: 50px;

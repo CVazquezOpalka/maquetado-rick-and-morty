@@ -12,11 +12,11 @@ import {
   speciesFilter,
   updateFilter,
 } from "../../redux/filters/actions";
-import { updateSearch } from "../../redux/character/actions";
+import { updateSearch } from "../../redux/filters/actions";
 import { updatePagination } from "../../redux/page/action";
 import { useDispatch, useSelector } from "react-redux";
 
-export const Sidebar = ({show, handleShow}) => {
+export const Sidebar = ({ show, handleShow }) => {
   const dispatch = useDispatch();
   const { status, gender, species } = useSelector((state) => state.filters);
   const [selected, setSelected] = useState(null);
