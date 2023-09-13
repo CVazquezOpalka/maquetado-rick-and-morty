@@ -20,8 +20,8 @@ const RegisterAndlogin = () => {
           <div className="carrousel">
             <div className="container-span">
               <div className={`translate ${isClicked ? "active" : ""}`} />
-              <span onClick={() => setIsClicked(false)}>Login</span>
-              <span onClick={() => setIsClicked(true)}>Register</span>
+              <span onClick={() => setIsClicked(false)}>Iniciar Sesion</span>
+              <span onClick={() => setIsClicked(true)}>Registrarse</span>
             </div>
           </div>
           <div className={`form-content ${isClicked ? "activeContent" : ""}`}>

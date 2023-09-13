@@ -4,7 +4,8 @@ export const ContainerCardContex = styled.div`
   width: 90%;
   min-height: 500px;
   height: auto;
-  padding: 50px 0;
+  padding-top: 20px;
+  padding-bottom: 50px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   align-items: center;

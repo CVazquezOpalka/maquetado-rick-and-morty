@@ -3,11 +3,18 @@ import { useNavigate } from "react-router-dom";
 import { ContainerFromLogin } from "./style.js";
 import { AiOutlineUser, AiOutlineLock } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
-
+import { firebaseAuth } from "../../firebase.config.js";
+import {
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+} from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { isLogin } from "../../redux/user/action.js";
 
 export const FormLogin = () => {
-  const navigate = useNavigate();
-  const [isLogin, setIsLogin] = useState(false);
+  const dispatch = useDispatch();
+
   const [formLogin, setFormLogin] = useState({
     email: "",
     password: "",
@@ -22,14 +29,26 @@ export const FormLogin = () => {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     const { email, password } = formLogin;
-    setFormLogin({
-      email: "",
-      password: "",
-    });
+    const response = await signInWithEmailAndPassword(
+      firebaseAuth,
+      email,
+      password
+    );
+    if (response) {
+      dispatch(isLogin());
+      setFormLogin({
+        email: "",
+        password: "",
+      });
+    }
   };
-  const handleGoogle = (e) => {
+  const handleGoogle = async (e) => {
     e.preventDefault();
-    auth.loginWhitGoogle();
+    const googleProvider = new GoogleAuthProvider();
+    const response = await signInWithPopup(firebaseAuth, googleProvider);
+    if (response) {
+      dispatch(isLogin());
+    }
   };
 
   return (
@@ -42,7 +61,7 @@ export const FormLogin = () => {
             name="email"
             value={formLogin.email}
             onChange={handleOnChange}
-            placeholder="Enter your email.. "
+            placeholder="Ingresa un email..."
           />
         </div>
         <div className="input-field">
@@ -52,13 +71,13 @@ export const FormLogin = () => {
             name="password"
             value={formLogin.password}
             onChange={handleOnChange}
-            placeholder="Enter your password..."
+            placeholder="ingresar contraseña..."
           />
         </div>
-        <button>Login</button>
+        <button>Iniciar Sesión</button>
       </form>
       <button className="social" onClick={handleGoogle}>
-        <FcGoogle /> login whit Google
+        <FcGoogle /> Iniciar sesión con Google
       </button>
     </ContainerFromLogin>
   );

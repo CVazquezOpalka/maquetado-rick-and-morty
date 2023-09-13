@@ -25,7 +25,7 @@ export const ContainerHome = styled.main`
     justify-items: center;
     transition: 0.5s ease-in-out;
     .sidebar {
-      margin: 50px;
+      margin: 100px;
       width: ${({ show }) => (show ? "200px" : "0")};
       height: auto;
       transition: 0.5s ease-in-out;

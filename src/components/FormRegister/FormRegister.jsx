@@ -3,10 +3,11 @@ import { ContainerFormRegister } from "./style.js";
 import { AiOutlineUser, AiOutlineMail, AiOutlineLock } from "react-icons/ai";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { firebaseAuth } from "../../firebase.config.js";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 export const FormRegister = ({ setIsClicked }) => {
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
   const [formRegister, setFormRegister] = useState({
     userName: "",
     email: "",
@@ -23,17 +24,31 @@ export const FormRegister = ({ setIsClicked }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
     const { userName, email, password } = formRegister;
-    setIsLoading(false);
-    Swal.fire("user created successfully", "", "success").then(
-      navigate("/home")
+    const response = await createUserWithEmailAndPassword(
+      firebaseAuth,
+      email,
+      password
     );
-    setFormRegister({
-      userName: "",
-      email: "",
-      password: "",
-    });
+    if (response) {
+      Swal.fire({
+        icon: "success",
+        title: "Registro de usuarios",
+        html: `<p> Usuario Registrado con Exito</p>`,
+        showDenyButton: false,
+        denyButtonColor: "blue",
+        confirmButtonText: "ok",
+      }).then((response) => {
+        if (response.isConfirmed) {
+          setIsClicked(false);
+          setFormRegister({
+            userName: "",
+            email: "",
+            password: "",
+          });
+        }
+      });
+    }
   };
 
   return (
@@ -46,7 +61,7 @@ export const FormRegister = ({ setIsClicked }) => {
             name="userName"
             value={formRegister.userName}
             onChange={handleOnChange}
-            placeholder="Enter your username..."
+            placeholder="Ingresa tu nombre..."
           />
         </div>
         <div className="input-field">
@@ -56,7 +71,7 @@ export const FormRegister = ({ setIsClicked }) => {
             name="email"
             value={formRegister.email}
             onChange={handleOnChange}
-            placeholder="Enter your email..."
+            placeholder="Ingresa tu email..."
             autoComplete="off"
           />
         </div>
@@ -67,7 +82,7 @@ export const FormRegister = ({ setIsClicked }) => {
             name="password"
             value={formRegister.password}
             onChange={handleOnChange}
-            placeholder="Enter your password ..."
+            placeholder="Contraseña ..."
             autoComplete="off"
           />
         </div>

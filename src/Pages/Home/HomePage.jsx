@@ -7,14 +7,12 @@ import {
   Pagination,
 } from "../../components/index";
 import { useNavigate } from "react-router-dom";
-import { onAuthStateChanged } from "firebase/auth";
-import { firebaseAuth } from "../../firebase.config";
 import { useSelector } from "react-redux";
 import { Loader } from "../../components/Loader/Loader";
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
   const { isLoading, searchLoading } = useSelector((state) => state.character);
 
   const handleShow = () => {
@@ -26,7 +24,7 @@ const HomePage = () => {
       behavior: "smooth",
     });
   };
- 
+
   if (isLoading || searchLoading) {
     return <Loader />;
   } else
