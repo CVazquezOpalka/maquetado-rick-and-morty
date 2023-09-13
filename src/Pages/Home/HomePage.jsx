@@ -14,8 +14,9 @@ import { Loader } from "../../components/Loader/Loader";
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const [show, setShow] = useState(false);
-  const loading = useSelector((state) => state.character.isLoading);
+  const [show, setShow] = useState(true);
+  const { isLoading, searchLoading } = useSelector((state) => state.character);
+
   const handleShow = () => {
     setShow(!show);
   };
@@ -25,14 +26,12 @@ const HomePage = () => {
       behavior: "smooth",
     });
   };
-  onAuthStateChanged(firebaseAuth, (user) => {
-    if (user) navigate("/home");
-  });
-  return (
-    <>
-      {loading ? (
-        <Loader />
-      ) : (
+ 
+  if (isLoading || searchLoading) {
+    return <Loader />;
+  } else
+    return (
+      <>
         <ContainerHome show={show}>
           <div className="search">
             <SearchBar />
@@ -53,9 +52,8 @@ const HomePage = () => {
             <button onClick={handleScroll}>subir</button>
           </div>
         </ContainerHome>
-      )}
-    </>
-  );
+      </>
+    );
 };
 
 export default HomePage;

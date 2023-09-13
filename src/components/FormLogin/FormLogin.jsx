@@ -1,14 +1,11 @@
 import React, { useState } from "react";
-import { UseAuth } from "../../context/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
 import { ContainerFromLogin } from "./style.js";
 import { AiOutlineUser, AiOutlineLock } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
-import { onAuthStateChanged } from "firebase/auth";
-import { firebaseAuth } from "../../firebase.config.js";
+
 
 export const FormLogin = () => {
-  const auth = UseAuth();
   const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(false);
   const [formLogin, setFormLogin] = useState({
@@ -25,8 +22,6 @@ export const FormLogin = () => {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     const { email, password } = formLogin;
-    auth.signIn(email, password);
-    setIsLogin(true);
     setFormLogin({
       email: "",
       password: "",
@@ -36,12 +31,6 @@ export const FormLogin = () => {
     e.preventDefault();
     auth.loginWhitGoogle();
   };
-
-  onAuthStateChanged(firebaseAuth, (user) => {
-    if (user && isLogin === true) {
-      navigate("/home");
-    }
-  });
 
   return (
     <ContainerFromLogin>
