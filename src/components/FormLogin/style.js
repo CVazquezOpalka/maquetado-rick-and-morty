@@ -74,7 +74,7 @@ export const ContainerFromLogin = styled.div`
     }
   }
   .social {
-    width: 50%;
+    width: 70%;
     height: 50px;
     display: grid;
     grid-template-columns: 20% 80%;
