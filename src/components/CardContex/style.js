@@ -10,5 +10,5 @@ export const ContainerCardContex = styled.div`
   grid-template-columns: repeat(4, 1fr);
   align-items: center;
   justify-items: center;
-  gap: 50px;
+  gap: 40px;
 `;

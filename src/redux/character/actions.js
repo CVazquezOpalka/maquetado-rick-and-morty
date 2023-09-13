@@ -4,9 +4,7 @@ import {
   UPDATE_CHARACTER_DETAIL,
   ADD_CHARACTER_TO_FAVORITE,
   REMOVE_CHARACTER_TO_FAVORITE,
-  SEARCH_CHARACTER,
-  UPDATE_SEARCH,
-  SEARCH_CHARACTER_OK,
+ 
 } from "./type";
 
 export const getAllCharacters = (URL) => async (dispatch) => {
@@ -50,14 +48,3 @@ export const removeCharacterToFavorite = (id) => ({
   payload: id,
 });
 
-export const searchCharacter = () => ({
-  type: SEARCH_CHARACTER,
-});
-export const searchCharacterOk = (character) => ({
-  type: SEARCH_CHARACTER_OK,
-  payload: character,
-});
-
-export const updateSearch = () => ({
-  type: UPDATE_SEARCH,
-});

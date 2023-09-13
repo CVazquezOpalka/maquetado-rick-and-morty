@@ -24,7 +24,7 @@ export const Navbar = () => {
       </div>
       <nav className="navigaion">
         <span>
-          <NavLink to="/home">Home</NavLink>
+          <NavLink to="/home">Personajes</NavLink>
         </span>
         <span>
           <NavLink to="/favorite">Favoritos</NavLink>

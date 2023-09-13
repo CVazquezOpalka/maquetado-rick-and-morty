@@ -4,12 +4,12 @@ import {
   searchCharacterOk,
   searchCharacter,
   updateSearch,
-} from "../../redux/character/actions";
+} from "../../redux/filters/actions";
 import { ContainerSearch } from "./style";
 
 export const SearchBar = () => {
   const dispatch = useDispatch();
-  const stateSearch = useSelector((state) => state.character.searchCharacters);
+  const stateSearch = useSelector((state) => state.filters.searchCharacters);
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleSubmmit = (e) => {

@@ -11,15 +11,17 @@ const App = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const page = useSelector((state) => state.pagination.actualPage);
-  const search = useSelector((state) => state.character.searchCharacters);
-  const { status, gender, species } = useSelector((state) => state.filters);
+
+  const { searchCharacters, status, gender, species } = useSelector(
+    (state) => state.filters
+  );
   const login = useSelector((state) => state.user.login);
-  const URL = `https://rickandmortyapi.com/api/character/?page=${page}&name=${search}&status=${status}&gender=${gender}&species=${species}`;
+  const URL = `https://rickandmortyapi.com/api/character/?page=${page}&name=${searchCharacters}&status=${status}&gender=${gender}&species=${species}`;
 
   useEffect(() => {
     dispatch(getAllCharacters(URL));
     dispatch(totalPages(URL));
-  }, [dispatch, page, search, status, gender, species]);
+  }, [dispatch, page, searchCharacters, status, gender, species]);
   useEffect(() => {
     if (login) {
       onAuthStateChanged(firebaseAuth, (user) => {
