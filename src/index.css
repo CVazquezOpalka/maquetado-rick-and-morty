@@ -16,4 +16,10 @@ html {
 body {
   min-height: 100%;
   overflow-x: hidden;
+  background: rgb(63, 94, 251);
+  background: radial-gradient(
+    circle,
+    rgba(63, 94, 251, 1) 0%,
+    rgba(252, 70, 162, 1) 100%
+  );
 }

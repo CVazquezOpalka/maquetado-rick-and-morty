@@ -19,4 +19,11 @@ const Container = styled.div`
   color: #fff;
   letter-spacing: 3px;
   text-transform: capitalize;
+  @media (max-width: 480px) {
+    width: 480px;
+    height: 50px;
+    h1 {
+      font-size: 20px;
+    }
+  }
 `;

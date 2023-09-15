@@ -1,15 +1,10 @@
 import styled from "styled-components";
 
 export const ContainerHome = styled.main`
+  padding-bottom: 30px;
   position: relative;
   width: 100%;
   height: auto;
-  background: rgb(63, 94, 251);
-  background: radial-gradient(
-    circle,
-    rgba(63, 94, 251, 1) 0%,
-    rgba(252, 70, 162, 1) 100%
-  );
   .search {
     height: 130px;
     display: flex;
@@ -25,7 +20,6 @@ export const ContainerHome = styled.main`
     justify-items: center;
     transition: 0.5s ease-in-out;
     .sidebar {
-      margin: 100px;
       width: ${({ show }) => (show ? "200px" : "0")};
       height: auto;
       transition: 0.5s ease-in-out;
@@ -45,18 +39,27 @@ export const ContainerHome = styled.main`
   }
   .btn-slide {
     position: absolute;
-    bottom: -20px;
+    bottom: -25px;
     right: 10px;
     width: 50px;
     height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 10;
     button {
       width: 100%;
       height: 100%;
       border-radius: 50%;
       border: none;
+      background-color: blue;
+      font-size: 18px;
+      color: #fff;
+      cursor: pointer;
+      transition: 0.3s ease-in-out;
+      &:hover {
+        background: #191567;
+      }
     }
   }
 `;

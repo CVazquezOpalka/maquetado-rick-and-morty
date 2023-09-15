@@ -18,7 +18,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 export const Sidebar = ({ show, handleShow }) => {
   const dispatch = useDispatch();
-  const { status, gender, species } = useSelector((state) => state.filters);
+  const { status, gender, species, searchCharacters } = useSelector(
+    (state) => state.filters
+  );
   const [selected, setSelected] = useState(null);
   const toogle = (i) => {
     if (selected === i) {
@@ -69,6 +71,15 @@ export const Sidebar = ({ show, handleShow }) => {
 
   const handleRadioButtons = (e) => {
     const { name } = e.target;
+    const updatedFilters = filters.filter((filter) => {
+      return (
+        (statusArr.includes(name) && !statusArr.includes(filter)) ||
+        (genderArr.includes(name) && !genderArr.includes(filter)) ||
+        (speciesArr.includes(name) && !speciesArr.includes(filter))
+      );
+    });
+    updatedFilters.push(name);
+    setFilters(updatedFilters);
     if (statusArr.includes(name)) {
       dispatch(statusFilter(name));
       dispatch(updatePagination());
@@ -80,10 +91,19 @@ export const Sidebar = ({ show, handleShow }) => {
       dispatch(updatePagination());
     }
   };
+
   const updateState = () => {
     dispatch(updateFilter());
     dispatch(updateSearch());
+    setFilters([]);
   };
+
+  const updateSpan = (value) => {
+    const updateFilter = filters.filter((e) => !e.includes(value));
+    setFilters(updateFilter);
+  };
+
+  console.log(filters);
 
   return (
     <>
@@ -93,6 +113,18 @@ export const Sidebar = ({ show, handleShow }) => {
             <p>Filtros</p>
           </button>
         </div>
+        {filters.length > 0 && (
+          <div className="filters-selected ">
+            <h2>Filtros</h2>
+            <div className="filters">
+              {filters.map((e, i) => (
+                <span value={e} onClick={() => updateSpan(e)} key={i}>
+                  {e}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
         {data.map((item, i) => (
           <ItemContainer>
             <TitleAcordion onClick={() => toogle(i)}>
@@ -106,6 +138,7 @@ export const Sidebar = ({ show, handleShow }) => {
                     type="radio"
                     name={e}
                     onChange={handleRadioButtons}
+                    className="x"
                     checked={
                       e === status
                         ? true
@@ -115,8 +148,9 @@ export const Sidebar = ({ show, handleShow }) => {
                         ? true
                         : false
                     }
+                    id={`${e}-${i}`}
                   />
-                  <label>{e}</label>
+                  <label htmlFor={`${e}-${i}`}>{e}</label>
                 </InputField>
               ))}
             </ContentAcordion>

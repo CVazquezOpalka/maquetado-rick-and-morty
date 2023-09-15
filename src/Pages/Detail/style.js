@@ -4,12 +4,6 @@ export const DetailContainer = styled.div`
   position: relative;
   width: 100%;
   height: calc(100vh - 80px);
-  background: rgb(63, 94, 251);
-  background: radial-gradient(
-    circle,
-    rgba(63, 94, 251, 1) 0%,
-    rgba(252, 70, 162, 1) 100%
-  );
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(4, 1fr);

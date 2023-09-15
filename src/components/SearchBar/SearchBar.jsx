@@ -6,6 +6,7 @@ import {
   updateSearch,
 } from "../../redux/filters/actions";
 import { ContainerSearch } from "./style";
+import Swal from "sweetalert2";
 
 export const SearchBar = () => {
   const dispatch = useDispatch();
@@ -16,7 +17,11 @@ export const SearchBar = () => {
     e.preventDefault();
     dispatch(searchCharacter);
     if (searchTerm.trim() === "") {
-      alert("debes agregar un nombre para realizar la busqueda");
+      Swal.fire(
+        "",
+        "Debes agregar un nombre para realizar la busqueda",
+        "error"
+      );
     } else {
       dispatch(searchCharacterOk(searchTerm));
       setSearchTerm("");
