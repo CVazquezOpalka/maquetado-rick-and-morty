@@ -22,6 +22,7 @@ const App = () => {
     dispatch(getAllCharacters(URL));
     dispatch(totalPages(URL));
   }, [dispatch, page, searchCharacters, status, gender, species]);
+  
   useEffect(() => {
     if (login) {
       onAuthStateChanged(firebaseAuth, (user) => {

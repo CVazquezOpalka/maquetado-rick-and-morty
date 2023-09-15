@@ -20,32 +20,36 @@ export const Pagination = () => {
   }, [actualPage, totalPages]);
 
   return (
-    <PaginationContainer>
-      <div className="pagination">
-        <button
-          className={`prev ${prevButtonDisabled ? "danger" : ""}`}
-          onClick={() => {
-            dispatch(prevPage());
-            updateButtonStatus();
-          }}
-          disabled={prevButtonDisabled}
-        >
-          Prev
-        </button>
-        <h3 className="page-item">
-          <span>{actualPage}</span> de {totalPages}
-        </h3>
-        <button
-          className={`next ${nextButtonDisabled ? "danger" : ""}`}
-          onClick={() => {
-            dispatch(nextPage());
-            updateButtonStatus();
-          }}
-          disabled={nextButtonDisabled}
-        >
-          Next
-        </button>
-      </div>
-    </PaginationContainer>
+    <>
+      {totalPages > 1 && (
+        <PaginationContainer>
+          <div className="pagination">
+            <button
+              className={`prev ${prevButtonDisabled ? "danger" : ""}`}
+              onClick={() => {
+                dispatch(prevPage());
+                updateButtonStatus();
+              }}
+              disabled={prevButtonDisabled}
+            >
+              Prev
+            </button>
+            <h3 className="page-item">
+              <span>{actualPage}</span> de {totalPages}
+            </h3>
+            <button
+              className={`next ${nextButtonDisabled ? "danger" : ""}`}
+              onClick={() => {
+                dispatch(nextPage());
+                updateButtonStatus();
+              }}
+              disabled={nextButtonDisabled}
+            >
+              Next
+            </button>
+          </div>
+        </PaginationContainer>
+      )}
+    </>
   );
 };

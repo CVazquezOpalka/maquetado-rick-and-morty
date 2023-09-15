@@ -9,6 +9,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Loader } from "../../components/Loader/Loader";
+import {AiOutlineArrowUp} from 'react-icons/ai'
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -47,7 +48,7 @@ const HomePage = () => {
             <Pagination />
           </div>
           <div className="btn-slide">
-            <button onClick={handleScroll}>subir</button>
+            <button onClick={handleScroll}><AiOutlineArrowUp/></button>
           </div>
         </ContainerHome>
       </>

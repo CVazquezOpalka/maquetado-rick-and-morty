@@ -10,7 +10,6 @@ export const WrapperSidebar = styled.div`
   justify-content: center;
   border-radius: 0 10px 10px 0;
   background-color: #111;
-
   .btn {
     position: absolute;
     top: 10%;
@@ -133,6 +132,24 @@ export const InputField = styled.div`
   width: 100%;
   height: auto;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 5px;
+  label {
+    cursor: pointer;
+    padding: 3px 5px;
+    transition: 0.3s ease;
+    border-radius: 3px;
+    &:hover {
+      color: #fff;
+    }
+  }
+  input[type="radio"] {
+    display: none;
+  }
+  .x:checked + label {
+    background-color: #fff;
+    cursor: pointer;
+    color: #111;
+  }
 `;

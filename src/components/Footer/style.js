@@ -2,18 +2,23 @@ import styled from "styled-components";
 
 export const FooterContainer = styled.footer`
   width: 100vw;
-  height: 60px;
-  background-color: #111;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
   .social {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
     width: 300px;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 20px;
     a {
       display: inline-block;
       width: 50px;
@@ -29,7 +34,7 @@ export const FooterContainer = styled.footer`
       }
     }
     .linkedin {
-      background: blue;
+      background: #0d64c1;
       color: #fff;
     }
     .github {
@@ -37,7 +42,7 @@ export const FooterContainer = styled.footer`
       color: #fff;
     }
     .whatsapp {
-      background-color: green;
+      background-color: #1dfd33;
       color: #fff;
     }
   }

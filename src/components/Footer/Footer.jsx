@@ -13,7 +13,7 @@ export const Footer = () => {
       <div className="social">
         <a
           className="linkedin"
-          href="https://www.aedin.com/in/cristian-miguel-vazquez-opalka/"
+          href="https://www.linkedin.com/in/cristian-miguel-vazquez-opalka/"
           target="_blank"
         >
           <span>
